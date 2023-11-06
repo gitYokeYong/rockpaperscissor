@@ -92,6 +92,7 @@ class Game:
         move2 = self.p2.move()
         print(f"{BLUE}Round {round + 1}:")
         print(f"{RESET}Player 1: {GREEN}{move1}{RESET}")
+        print(f"{RESET}Player 2:{RED}{move2}{RESET}") 
         if beats(move1, move2):
             print(f"{GREEN}Player 1 wins this round!{RESET}")
             self.p1_score += 1
@@ -111,7 +112,7 @@ class Game:
             self.play_round(round)
             self.display_accumulated_score()
             if round < 2:
-                input("Press Enter to start the next round...")
+                input("Press Any key to start the next round...")
 
         if self.p1_score > self.p2_score:
             print(f"{GREEN}Player 1 wins the game!{RESET}")
@@ -148,7 +149,15 @@ if __name__ == '__main__':
     print("Player list:")
     for key, value in opponents.items():
         print(f"{key}. {value.__name__}")
-    p1 = opponents[input(f"Choose player 1: ")]
-    p2 = opponents[input(f"Choose player 2: ")]
-    game = Game(p1(), p2())
-    game.play_game()
+
+    while True:
+        p1_choice = input("Choose player 1: ")
+        p2_choice = input("Choose player 2: ")
+        if p1_choice in opponents and p2_choice in opponents:
+            p1 = opponents[p1_choice]
+            p2 = opponents[p2_choice]
+            game = Game(p1(), p2())
+            game.play_game()
+            break
+        else:
+            print("Invalid choice. Please enter valid player numbers.")
