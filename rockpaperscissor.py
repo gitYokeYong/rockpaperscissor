@@ -92,7 +92,7 @@ class Game:
         move2 = self.p2.move()
         print(f"{BLUE}Round {round + 1}:")
         print(f"{RESET}Player 1: {GREEN}{move1}{RESET}")
-        print(f"{RESET}Player 2:{RED}{move2}{RESET}") 
+        print(f"{RESET}Player 2:{RED}{move2}{RESET}")
         if beats(move1, move2):
             print(f"{GREEN}Player 1 wins this round!{RESET}")
             self.p1_score += 1
